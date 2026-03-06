@@ -112,95 +112,139 @@
     .galerie{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:15px;
+      gap:18px;
       margin-top:20px;
     }
 
-    .galerie img{
+    .gallery-item{
+      background:#111116;
+      border:1px solid var(--line);
+      border-radius:12px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .gallery-item:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 24px rgba(0,0,0,.28);
+    }
+
+    .gallery-item img{
       width:100%;
       height:220px;
       object-fit:cover;
-      border-radius:10px;
-      cursor:pointer;
-      transition:transform 0.3s ease, opacity 0.3s ease;
-      border:1px solid var(--line);
       display:block;
     }
 
-    .galerie img:hover{
-      transform:scale(1.03);
-      opacity:0.92;
+    .gallery-caption{
+      padding:12px 14px;
+      color:#d8d8de;
+      font-size:14px;
+      text-align:center;
+      border-top:1px solid var(--line);
     }
 
     .lightbox{
       display:none;
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,0.88);
+      background:rgba(0,0,0,0.92);
       z-index:9999;
       align-items:center;
       justify-content:center;
-      padding:30px;
+      padding:20px;
     }
 
     .lightbox.active{
       display:flex;
     }
 
-    .lightbox-content{
+    .lightbox-inner{
       position:relative;
-      max-width:95vw;
-      max-height:90vh;
+      width:100%;
+      max-width:1200px;
       display:flex;
+      flex-direction:column;
       align-items:center;
       justify-content:center;
     }
 
+    .lightbox-stage{
+      position:relative;
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:60vh;
+      touch-action:pan-y;
+    }
+
     .lightbox img{
       max-width:95vw;
-      max-height:90vh;
+      max-height:78vh;
       border-radius:12px;
       border:2px solid #222;
       box-shadow:0 10px 40px rgba(0,0,0,.5);
+      user-select:none;
+      -webkit-user-drag:none;
+    }
+
+    .lightbox-caption{
+      margin-top:16px;
+      color:#e2e2e7;
+      text-align:center;
+      font-size:16px;
+      max-width:900px;
+      line-height:1.5;
+    }
+
+    .counter{
+      margin-top:8px;
+      color:#9fa1ad;
+      font-size:13px;
     }
 
     .close,
     .prev,
     .next{
       position:absolute;
-      background:rgba(0,0,0,0.7);
+      background:rgba(10,10,12,0.78);
       color:white;
-      border:none;
+      border:1px solid rgba(255,255,255,0.12);
       cursor:pointer;
-      border-radius:8px;
+      border-radius:10px;
       font-size:28px;
       line-height:1;
       padding:12px 16px;
+      transition:0.2s ease;
+    }
+
+    .close:hover,
+    .prev:hover,
+    .next:hover{
+      background:var(--accent);
     }
 
     .close{
-      top:-55px;
+      top:0;
       right:0;
       font-size:34px;
+      z-index:3;
     }
 
     .prev{
-      left:-70px;
+      left:12px;
       top:50%;
       transform:translateY(-50%);
+      z-index:3;
     }
 
     .next{
-      right:-70px;
+      right:12px;
       top:50%;
       transform:translateY(-50%);
-    }
-
-    .caption{
-      text-align:center;
-      color:#ddd;
-      margin-top:14px;
-      font-size:15px;
+      z-index:3;
     }
 
     footer{
@@ -217,25 +261,6 @@
       text-decoration:none;
     }
 
-    @media (max-width:900px){
-      .prev{
-        left:10px;
-      }
-
-      .next{
-        right:10px;
-      }
-
-      .close{
-        top:10px;
-        right:10px;
-      }
-
-      .lightbox-content{
-        width:100%;
-      }
-    }
-
     @media (max-width:700px){
       .wrap{
         margin:25px auto;
@@ -249,8 +274,38 @@
         height:220px;
       }
 
-      .galerie img{
+      .gallery-item img{
         height:200px;
+      }
+
+      .close{
+        top:-6px;
+        right:0;
+      }
+
+      .prev,
+      .next{
+        top:auto;
+        bottom:-64px;
+        transform:none;
+      }
+
+      .prev{
+        left:calc(50% - 70px);
+      }
+
+      .next{
+        right:calc(50% - 70px);
+      }
+
+      .lightbox-caption{
+        margin-top:20px;
+        font-size:15px;
+        padding:0 8px;
+      }
+
+      .counter{
+        margin-bottom:70px;
       }
     }
   </style>
@@ -327,26 +382,55 @@
 
     <div class="card">
       <h2>Bandfotos</h2>
-      <p>Ein Klick auf ein Bild öffnet die Großansicht.</p>
+      <p>Ein Klick öffnet die Großansicht. Auf dem Handy kannst du nach links und rechts wischen.</p>
 
       <div class="galerie">
-        <img src="foto1.jpg" alt="Bandfoto 1" class="gallery-img">
-        <img src="foto2.jpg" alt="Bandfoto 2" class="gallery-img">
-        <img src="foto3.jpg" alt="Bandfoto 3" class="gallery-img">
-        <img src="foto4.jpg" alt="Bandfoto 4" class="gallery-img">
-        <img src="foto5.jpg" alt="Bandfoto 5" class="gallery-img">
-        <img src="foto6.jpg" alt="Bandfoto 6" class="gallery-img">
+        <div class="gallery-item" data-full="foto1.jpg" data-caption="Live im Proberaum – erste Sessions">
+          <img src="foto1.jpg" alt="Bandfoto 1">
+          <div class="gallery-caption">Live im Proberaum – erste Sessions</div>
+        </div>
+
+        <div class="gallery-item" data-full="foto2.jpg" data-caption="Bandshooting in dunkler Kulisse">
+          <img src="foto2.jpg" alt="Bandfoto 2">
+          <div class="gallery-caption">Bandshooting in dunkler Kulisse</div>
+        </div>
+
+        <div class="gallery-item" data-full="foto3.jpg" data-caption="Studioaufnahme und Songwriting">
+          <img src="foto3.jpg" alt="Bandfoto 3">
+          <div class="gallery-caption">Studioaufnahme und Songwriting</div>
+        </div>
+
+        <div class="gallery-item" data-full="foto4.jpg" data-caption="Deutschrock mit Kante">
+          <img src="foto4.jpg" alt="Bandfoto 4">
+          <div class="gallery-caption">Deutschrock mit Kante</div>
+        </div>
+
+        <div class="gallery-item" data-full="foto5.jpg" data-caption="Backstage vor der Show">
+          <img src="foto5.jpg" alt="Bandfoto 5">
+          <div class="gallery-caption">Backstage vor der Show</div>
+        </div>
+
+        <div class="gallery-item" data-full="foto6.jpg" data-caption="Volle Energie auf der Bühne">
+          <img src="foto6.jpg" alt="Bandfoto 6">
+          <div class="gallery-caption">Volle Energie auf der Bühne</div>
+        </div>
       </div>
     </div>
 
   </div>
 
   <div class="lightbox" id="lightbox">
-    <div class="lightbox-content">
+    <div class="lightbox-inner">
       <button class="close" id="closeBtn" aria-label="Schließen">&times;</button>
-      <button class="prev" id="prevBtn" aria-label="Vorheriges Bild">&#10094;</button>
-      <img id="lightboxImg" src="" alt="">
-      <button class="next" id="nextBtn" aria-label="Nächstes Bild">&#10095;</button>
+
+      <div class="lightbox-stage" id="lightboxStage">
+        <button class="prev" id="prevBtn" aria-label="Vorheriges Bild">&#10094;</button>
+        <img id="lightboxImg" src="" alt="">
+        <button class="next" id="nextBtn" aria-label="Nächstes Bild">&#10095;</button>
+      </div>
+
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+      <div class="counter" id="lightboxCounter"></div>
     </div>
   </div>
 
@@ -355,24 +439,46 @@
   </footer>
 
   <script>
-    const galleryImages = document.querySelectorAll('.gallery-img');
+    const galleryItems = document.querySelectorAll('.gallery-item');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxCounter = document.getElementById('lightboxCounter');
     const closeBtn = document.getElementById('closeBtn');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
+    const lightboxStage = document.getElementById('lightboxStage');
 
     let currentIndex = 0;
+    let startX = 0;
+    let endX = 0;
 
     function showImage(index) {
       currentIndex = index;
-      lightboxImg.src = galleryImages[index].src;
-      lightboxImg.alt = galleryImages[index].alt;
+      const item = galleryItems[index];
+      const fullSrc = item.getAttribute('data-full');
+      const caption = item.getAttribute('data-caption');
+      const img = item.querySelector('img');
+
+      lightboxImg.src = fullSrc;
+      lightboxImg.alt = img.alt;
+      lightboxCaption.textContent = caption;
+      lightboxCounter.textContent = (index + 1) + ' / ' + galleryItems.length;
       lightbox.classList.add('active');
     }
 
-    galleryImages.forEach((img, index) => {
-      img.addEventListener('click', () => {
+    function showNext() {
+      currentIndex = (currentIndex + 1) % galleryItems.length;
+      showImage(currentIndex);
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+      showImage(currentIndex);
+    }
+
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
         showImage(index);
       });
     });
@@ -389,14 +495,12 @@
 
     prevBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-      showImage(currentIndex);
+      showPrev();
     });
 
     nextBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      currentIndex = (currentIndex + 1) % galleryImages.length;
-      showImage(currentIndex);
+      showNext();
     });
 
     document.addEventListener('keydown', (e) => {
@@ -407,15 +511,34 @@
       }
 
       if (e.key === 'ArrowLeft') {
-        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-        showImage(currentIndex);
+        showPrev();
       }
 
       if (e.key === 'ArrowRight') {
-        currentIndex = (currentIndex + 1) % galleryImages.length;
-        showImage(currentIndex);
+        showNext();
       }
     });
+
+    lightboxStage.addEventListener('touchstart', (e) => {
+      startX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightboxStage.addEventListener('touchend', (e) => {
+      endX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const diff = endX - startX;
+
+      if (Math.abs(diff) < 50) return;
+
+      if (diff > 0) {
+        showPrev();
+      } else {
+        showNext();
+      }
+    }
   </script>
 
 </body>
