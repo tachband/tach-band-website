@@ -5,22 +5,178 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tach! – Tour</title>
   <style>
-    :root{--bg:#0b0b0d;--panel:#141417;--panel2:#1b1b20;--text:#f2f2f2;--muted:#b7b7bd;--accent:#d1122a;--line:#2a2a31;}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Arial, Helvetica, sans-serif;background:linear-gradient(180deg,#09090b 0%, #111116 100%);color:var(--text);}
-    nav{position:sticky;top:0;z-index:1000;display:flex;justify-content:center;flex-wrap:wrap;gap:10px;background:rgba(10,10,12,.96);border-bottom:1px solid var(--line);padding:16px 12px;backdrop-filter:blur(8px);}
-    nav a{color:#fff;text-decoration:none;font-weight:bold;padding:10px 14px;border-radius:8px;}
-    nav a:hover, nav a.active{background:var(--accent);}
-    .wrap{max-width:1100px;margin:40px auto;padding:0 20px;}
-    .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:32px 24px;box-shadow:0 10px 30px rgba(0,0,0,.25);}
-    .date{background:#111116;border:1px solid var(--line);padding:16px;border-radius:12px;margin-top:14px;}
-    h1{margin-top:0}
-    p{line-height:1.6;color:var(--muted);}
-    footer{margin-top:50px;text-align:center;padding:30px 20px;background:#0a0a0c;border-top:1px solid var(--line);color:#999;}
-    footer a{color:#fff;text-decoration:none;}
+    :root{
+      --bg:#0b0b0d;
+      --panel:#141417;
+      --panel2:#1b1b20;
+      --text:#f2f2f2;
+      --muted:#b7b7bd;
+      --accent:#d1122a;
+      --line:#2a2a31;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#09090b 0%, #111116 100%);
+      color:var(--text);
+    }
+
+    nav{
+      position:relative;
+      z-index:1000;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+      background:rgba(10,10,12,.96);
+      border-bottom:1px solid var(--line);
+      padding:16px 12px;
+    }
+
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      padding:10px 14px;
+      border-radius:8px;
+      transition:0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active{
+      background:var(--accent);
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:40px auto;
+      padding:0 20px;
+    }
+
+    .card{
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:32px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      margin-bottom:30px;
+    }
+
+    h1,h2{
+      margin-top:0;
+    }
+
+    p{
+      line-height:1.7;
+      color:var(--muted);
+    }
+
+    .poster-wrap{
+      display:flex;
+      justify-content:center;
+      margin-top:20px;
+    }
+
+    .poster{
+      position:relative;
+      width:100%;
+      max-width:760px;
+      aspect-ratio: 2 / 3;
+      background:url("tourposter.jpg") center/cover no-repeat;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+
+    .tour-list{
+      position:absolute;
+      left:11%;
+      right:11%;
+      top:47%;
+      bottom:19%;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      align-items:center;
+      text-align:center;
+      padding:18px 20px;
+      overflow:auto;
+    }
+
+    .tour-entry{
+      width:100%;
+      margin-bottom:14px;
+      color:#3b2b14;
+      text-shadow:0 1px 0 rgba(255,255,255,0.25);
+    }
+
+    .tour-entry strong{
+      display:block;
+      font-size:clamp(18px, 2vw, 28px);
+      line-height:1.2;
+      letter-spacing:0.02em;
+    }
+
+    .tour-entry span{
+      display:block;
+      font-size:clamp(15px, 1.5vw, 22px);
+      margin-top:4px;
+      line-height:1.3;
+      font-weight:bold;
+    }
+
+    .tour-note{
+      margin-top:18px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    footer{
+      margin-top:50px;
+      text-align:center;
+      padding:30px 20px;
+      background:#0a0a0c;
+      border-top:1px solid var(--line);
+      color:#999;
+    }
+
+    footer a{
+      color:#fff;
+      text-decoration:none;
+    }
+
+    @media (max-width:700px){
+      .wrap{
+        margin:25px auto;
+      }
+
+      .card{
+        padding:24px 18px;
+      }
+
+      .tour-list{
+        left:10%;
+        right:10%;
+        top:46%;
+        bottom:18%;
+        padding:12px 10px;
+      }
+
+      .tour-entry{
+        margin-bottom:10px;
+      }
+    }
   </style>
 </head>
 <body>
+
   <nav>
     <a href="index.html">Start</a>
     <a href="band.html">Band</a>
@@ -32,17 +188,54 @@
   </nav>
 
   <div class="wrap">
+
     <div class="card">
       <h1>📅 Tour</h1>
-      <p>Neue Shows werden bald angekündigt.</p>
+      <p>
+        Hier stehen eure kommenden Konzerte direkt im Tourposter.
+      </p>
 
-      <div class="date"><strong>Noch keine bestätigten Termine</strong><br><span style="color:#b7b7bd;">Sobald etwas feststeht, kommt es hier rein.</span></div>
-      <div class="date"><strong>Booking-Anfragen</strong><br><span style="color:#b7b7bd;">Per Mail an <a href="mailto:tach.band@gmail.com" style="color:white;text-decoration:none;">tach.band@gmail.com</a></span></div>
+      <div class="poster-wrap">
+        <div class="poster">
+          <div class="tour-list">
+            <div class="tour-entry">
+              <strong>12.07.2026 – Hamburg</strong>
+              <span>Molotow</span>
+            </div>
+
+            <div class="tour-entry">
+              <strong>19.07.2026 – Berlin</strong>
+              <span>SO36</span>
+            </div>
+
+            <div class="tour-entry">
+              <strong>02.08.2026 – Köln</strong>
+              <span>MTC Club</span>
+            </div>
+
+            <div class="tour-entry">
+              <strong>16.08.2026 – Dortmund</strong>
+              <span>FZW</span>
+            </div>
+
+            <div class="tour-entry">
+              <strong>30.08.2026 – Hannover</strong>
+              <span>MusikZentrum</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tour-note">
+        Zum Ändern einfach die Einträge im Bereich <strong>tour-entry</strong> austauschen.
+      </div>
     </div>
+
   </div>
 
   <footer>
     © 2026 Tach! • <a href="mailto:tach.band@gmail.com">tach.band@gmail.com</a>
   </footer>
+
 </body>
 </html>
