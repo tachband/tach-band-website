@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tach! – Start</title>
+  <style>
+    :root{
+      --bg:#0b0b0d;
+      --panel:#141417;
+      --panel2:#1b1b20;
+      --text:#f2f2f2;
+      --muted:#b7b7bd;
+      --accent:#d1122a;
+      --line:#2a2a31;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#09090b 0%, #111116 100%);
+      color:var(--text);
+    }
+
+    nav{
+      position:relative;
+      z-index:1000;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+      background:rgba(10,10,12,.96);
+      border-bottom:1px solid var(--line);
+      padding:16px 12px;
+    }
+
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      padding:10px 14px;
+      border-radius:8px;
+      transition:0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active{
+      background:var(--accent);
+    }
+
+    .hero{
+      min-height:78vh;
+      background:
+        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.82)),
+        url("header.jpg") center center/cover no-repeat;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:90px 20px 70px;
+      border-bottom:3px solid var(--accent);
+    }
+
+    .hero-inner{
+      max-width:900px;
+    }
+
+    .logo{
+      width:100%;
+      max-width:240px;
+      height:auto;
+      margin-bottom:24px;
+      filter:drop-shadow(0 10px 30px rgba(0,0,0,.45));
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(42px, 8vw, 88px);
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    .sub{
+      color:var(--muted);
+      font-size:20px;
+      margin-bottom:30px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 24px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:bold;
+      color:#fff;
+      background:var(--accent);
+      border:1px solid #ffffff14;
+      transition:0.2s ease;
+    }
+
+    .btn:hover{
+      opacity:0.9;
+    }
+
+    .btn.secondary{
+      background:transparent;
+      border:1px solid #ffffff2a;
+    }
+
+    .btn.secondary:hover{
+      background:#1a1a1f;
+    }
+
+    .section{
+      max-width:1100px;
+      margin:40px auto;
+      padding:0 20px;
+    }
+
+    .card{
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:32px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+      gap:18px;
+      margin-top:20px;
+    }
+
+    .mini{
+      background:#111116;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:20px;
+    }
+
+    h2,h3{
+      margin-top:0;
+    }
+
+    p{
+      line-height:1.6;
+      color:var(--muted);
+    }
+
+    footer{
+      margin-top:50px;
+      text-align:center;
+      padding:30px 20px;
+      background:#0a0a0c;
+      border-top:1px solid var(--line);
+      color:#999;
+    }
+
+    footer a{
+      color:#fff;
+      text-decoration:none;
+    }
+
+    @media (max-width: 700px){
+      .hero{
+        padding:70px 16px 50px;
+      }
+
+      .logo{
+        max-width:180px;
+      }
+
+      .sub{
+        font-size:18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Start</a>
+    <a href="band.html">Band</a>
+    <a href="musik.html">Musik</a>
+    <a href="tour.html" class="active">Tour</a>
+    <a href="merch.html">Merch</a>
+    <a href="social.html">Social</a>
+    <a href="impressum.html">Impressum</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <img src="logo.png" alt="Tach Logo" class="logo">
+      <h1>Tach!</h1>
+      <div class="sub">Deutschrock • Laut • Direkt</div>
+      <div class="buttons">
+        <a class="btn" href="musik.html">Musik hören</a>
+        <a class="btn secondary" href="tour.html">Zur Tour</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="card">
+      <h2>Willkommen bei Tach!</h2>
+      <p>
+        Hier findest du Musik, Live-Termine, Merch, Social Links und Kontakt.
+        Direkt, dunkel und klar – passend zum Sound.
+      </p>
+
+      <div class="grid">
+        <div class="mini">
+          <h3>🎧 Musik</h3>
+          <p>Singles, Videos und Streaming-Links.</p>
+        </div>
+        <div class="mini">
+          <h3>📅 Tour</h3>
+          <p>Shows, Städte und kommende Gigs.</p>
+        </div>
+        <div class="mini">
+          <h3>👕 Merch</h3>
+          <p>Shirts, Poster und mehr.</p>
+        </div>
+        <div class="mini">
+          <h3>📲 Social</h3>
+          <p>Instagram, Spotify, YouTube und weitere Links.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Tach! • <a href="mailto:tach.band@gmail.com">tach.band@gmail.com</a>
+  </footer>
+
+</body>
+</html>
