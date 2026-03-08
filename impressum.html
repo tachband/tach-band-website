@@ -3,44 +3,256 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
   <title>Tach! – Impressum</title>
+
   <style>
-    :root{--bg:#0b0b0d;--panel:#141417;--panel2:#1b1b20;--text:#f2f2f2;--muted:#b7b7bd;--accent:#d1122a;--line:#2a2a31;}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Arial, Helvetica, sans-serif;background:linear-gradient(180deg,#09090b 0%, #111116 100%);color:var(--text);}
-    nav{position:sticky;top:0;z-index:1000;display:flex;justify-content:center;flex-wrap:wrap;gap:10px;background:rgba(10,10,12,.96);border-bottom:1px solid var(--line);padding:16px 12px;backdrop-filter:blur(8px);}
-    nav a{color:#fff;text-decoration:none;font-weight:bold;padding:10px 14px;border-radius:8px;}
-    nav a:hover, nav a.active{background:var(--accent);}
-    .wrap{max-width:1100px;margin:40px auto;padding:0 20px;}
-    .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:32px 24px;box-shadow:0 10px 30px rgba(0,0,0,.25);}
-    h1{margin-top:0}
-    p{line-height:1.7;color:var(--muted);}
-    a{color:#fff;text-decoration:none;}
-    footer{margin-top:50px;text-align:center;padding:30px 20px;background:#0a0a0c;border-top:1px solid var(--line);color:#999;}
-    footer a{color:#fff;text-decoration:none;}
+    :root{
+      --bg:#0b0b0d;
+      --panel:#141417;
+      --panel2:#1b1b20;
+      --text:#f2f2f2;
+      --muted:#b7b7bd;
+      --accent:#d1122a;
+      --line:#2a2a31;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:linear-gradient(180deg,#09090b 0%, #111116 100%);
+      color:var(--text);
+    }
+
+    header{
+      width:100%;
+      background:#000;
+      border-bottom:1px solid var(--line);
+    }
+
+    nav{
+      max-width:1100px;
+      margin:auto;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      padding:18px 14px;
+      flex-wrap:wrap;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
+      padding:8px 12px;
+      border-radius:8px;
+      transition:0.2s ease;
+    }
+
+    nav a.active,
+    nav a:hover{
+      background:var(--accent);
+    }
+
+    .wrap{
+      max-width:1000px;
+      margin:40px auto 60px;
+      padding:0 20px;
+    }
+
+    .card{
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:32px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      margin-bottom:30px;
+    }
+
+    h1,h2{
+      margin-bottom:14px;
+    }
+
+    p{
+      line-height:1.7;
+      color:var(--muted);
+      margin-bottom:12px;
+    }
+
+    .mail-link{
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    .mail-link:hover{
+      color:var(--accent);
+    }
+
+    .contact-form{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      margin-top:20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea{
+      width:100%;
+      padding:14px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      background:#111116;
+      color:#fff;
+      font-size:16px;
+      outline:none;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder{
+      color:#8f9099;
+    }
+
+    .contact-form textarea{
+      min-height:140px;
+      resize:vertical;
+    }
+
+    .contact-form button{
+      padding:14px 22px;
+      border:none;
+      border-radius:10px;
+      background:var(--accent);
+      color:#fff;
+      font-weight:bold;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.2s ease;
+      align-self:flex-start;
+    }
+
+    .contact-form button:hover{
+      opacity:0.92;
+    }
+
+    .small-note{
+      margin-top:12px;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    footer{
+      text-align:center;
+      padding:30px 20px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      background:#0a0a0c;
+    }
+
+    footer a{
+      color:#fff;
+      text-decoration:none;
+    }
+
+    @media (max-width:700px){
+      nav{
+        gap:12px;
+        padding:16px 10px;
+      }
+
+      nav a{
+        padding:8px 10px;
+        font-size:15px;
+      }
+
+      .wrap{
+        margin:25px auto 40px;
+      }
+
+      .card{
+        padding:24px 18px;
+      }
+
+      .contact-form button{
+        width:100%;
+      }
+    }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Start</a>
-    <a href="band.html">Band</a>
-    <a href="musik.html">Musik</a>
-    <a href="tour.html" class="active">Tour</a>
-    <a href="merch.html">Merch</a>
-    <a href="social.html">Social</a>
-    <a href="impressum.html">Impressum</a>
-  </nav>
+
+  <header>
+    <nav>
+      <a href="index.html">Start</a>
+      <a href="band.html">Band</a>
+      <a href="musik.html">Musik</a>
+      <a href="tour.html">Tour</a>
+      <a href="merch.html">Merch</a>
+      <a href="social.html">Social</a>
+      <a href="impressum.html" class="active">Impressum</a>
+    </nav>
+  </header>
 
   <div class="wrap">
+
     <div class="card">
       <h1>Impressum</h1>
       <p><strong>Band:</strong> Tach!</p>
-      <p><strong>E-Mail:</strong> <a href="mailto:tach.band@gmail.com">tach.band@gmail.com</a></p>
+      <p>
+        <strong>E-Mail:</strong>
+        <a class="mail-link" href="mailto:tach.band@gmail.com">tach.band@gmail.com</a>
+      </p>
+      <p>
+        Diese Website dient der Präsentation der Band Tach! sowie der Bereitstellung
+        von Informationen zu Musik, Tour, Medien und Kontaktmöglichkeiten.
+      </p>
     </div>
+
+    <div class="card">
+      <h2>Anfragen</h2>
+      <p>
+        Für Booking, Presse, Kooperationen oder allgemeine Fragen kannst du uns hier direkt schreiben.
+      </p>
+
+      <form action="https://formspree.io/f/mvzwgdro" method="POST" class="contact-form">
+        <input
+          type="text"
+          name="name"
+          placeholder="Dein Name"
+          required
+        >
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Deine E-Mail-Adresse"
+          required
+        >
+
+        <textarea
+          name="message"
+          placeholder="Deine Nachricht"
+          required
+        ></textarea>
+
+        <button type="submit">Nachricht senden</button>
+      </form>
+
+      <p class="small-note">
+        Deine Nachricht wird direkt an unser Kontaktpostfach weitergeleitet.
+      </p>
+    </div>
+
   </div>
 
   <footer>
     © 2026 Tach! • <a href="mailto:tach.band@gmail.com">tach.band@gmail.com</a>
   </footer>
+
 </body>
 </html>
