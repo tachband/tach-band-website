@@ -1,161 +1,205 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tach! – Social</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
+  <title>Tach! – Social</title>
 
-<style>
+  <style>
+    :root{
+      --bg:#0b0b0d;
+      --panel:#141417;
+      --panel2:#1b1b20;
+      --text:#f2f2f2;
+      --muted:#b7b7bd;
+      --accent:#d1122a;
+      --line:#2a2a31;
+    }
 
-:root{
---bg:#0b0b0f;
---card:#14141a;
---accent:#e21d2d;
---text:#ffffff;
---muted:#9a9aa3;
---line:#2a2a33;
-}
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:Arial, Helvetica, sans-serif;
+    }
 
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial, Helvetica, sans-serif;
-}
+    body{
+      background:linear-gradient(180deg,#09090b 0%, #111116 100%);
+      color:var(--text);
+    }
 
-body{
-background:var(--bg);
-color:var(--text);
-}
+    header{
+      width:100%;
+      background:#000;
+      border-bottom:1px solid var(--line);
+    }
 
-header{
-background:#000;
-border-bottom:1px solid var(--line);
-}
+    nav{
+      max-width:1100px;
+      margin:auto;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      padding:18px 14px;
+      flex-wrap:wrap;
+    }
 
-nav{
-max-width:1100px;
-margin:auto;
-display:flex;
-justify-content:center;
-gap:18px;
-padding:18px;
-flex-wrap:wrap;
-}
+    nav a{
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
+      padding:8px 12px;
+      border-radius:8px;
+      transition:0.2s ease;
+    }
 
-nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-padding:8px 12px;
-border-radius:8px;
-}
+    nav a.active,
+    nav a:hover{
+      background:var(--accent);
+    }
 
-nav a.active{
-background:var(--accent);
-}
+    .wrap{
+      max-width:1000px;
+      margin:40px auto 60px;
+      padding:0 20px;
+    }
 
-.container{
-max-width:900px;
-margin:60px auto;
-padding:20px;
-}
+    .card{
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:32px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+      margin-bottom:30px;
+      text-align:center;
+    }
 
-.card{
-background:var(--card);
-padding:30px;
-border-radius:14px;
-border:1px solid var(--line);
-text-align:center;
-}
+    h1{
+      margin-bottom:14px;
+      font-size:clamp(36px, 6vw, 56px);
+    }
 
-.social-links{
-margin-top:30px;
-display:flex;
-flex-direction:column;
-gap:20px;
-}
+    p{
+      line-height:1.7;
+      color:var(--muted);
+      margin-bottom:12px;
+      font-size:clamp(18px, 2.5vw, 22px);
+    }
 
-.social-btn{
-display:inline-block;
-padding:16px;
-border-radius:10px;
-background:#1a1a1f;
-border:1px solid var(--line);
-color:white;
-text-decoration:none;
-font-size:18px;
-transition:0.2s;
-}
+    .social-links{
+      margin-top:30px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      max-width:500px;
+      margin-left:auto;
+      margin-right:auto;
+    }
 
-.social-btn:hover{
-background:var(--accent);
-}
+    .social-btn{
+      display:block;
+      padding:18px 20px;
+      border-radius:12px;
+      background:#1a1a1f;
+      border:1px solid var(--line);
+      color:white;
+      text-decoration:none;
+      font-size:20px;
+      font-weight:bold;
+      transition:0.2s ease;
+    }
 
-footer{
-text-align:center;
-padding:30px;
-border-top:1px solid var(--line);
-color:var(--muted);
-}
+    .social-btn:hover{
+      background:var(--accent);
+      transform:translateY(-2px);
+    }
 
-</style>
+    footer{
+      text-align:center;
+      padding:30px 20px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      background:#0a0a0c;
+    }
 
+    footer a{
+      color:#fff;
+      text-decoration:none;
+    }
+
+    @media (max-width:700px){
+      nav{
+        gap:12px;
+        padding:16px 10px;
+      }
+
+      nav a{
+        padding:8px 10px;
+        font-size:15px;
+      }
+
+      .wrap{
+        margin:25px auto 40px;
+      }
+
+      .card{
+        padding:24px 18px;
+      }
+
+      .social-btn{
+        font-size:18px;
+        padding:16px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
+  <header>
+    <nav>
+      <a href="index.html">Start</a>
+      <a href="band.html">Band</a>
+      <a href="musik.html">Musik</a>
+      <a href="tour.html">Tour</a>
+      <a href="merch.html">Merch</a>
+      <a href="social.html" class="active">Social</a>
+      <a href="impressum.html">Impressum</a>
+    </nav>
+  </header>
 
-<nav>
-<a href="index.html">Start</a>
-<a href="band.html">Band</a>
-<a href="musik.html">Musik</a>
-<a href="tour.html">Tour</a>
-<a href="merch.html">Merch</a>
-<a href="social.html" class="active">Social</a>
-<a href="impressum.html">Impressum</a>
-</nav>
+  <div class="wrap">
+    <div class="card">
+      <h1>📱 Social Media</h1>
+      <p>
+        Folge Tach! auf unseren Kanälen für neue Songs, Videos und Updates.
+      </p>
 
-</header>
+      <div class="social-links">
+        <a
+          class="social-btn"
+          href="https://www.instagram.com/tach.band/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          📸 Instagram
+        </a>
 
-<div class="container">
+        <a
+          class="social-btn"
+          href="https://www.youtube.com/@Tach-Band"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ▶ YouTube
+        </a>
+      </div>
+    </div>
+  </div>
 
-<div class="card">
-
-<h1>Social Media</h1>
-
-<p>
-Folge Tach! auf unseren Social Media Kanälen.
-</p>
-
-<div class="social-links">
-
-<a
-class="social-btn"
-href="https://www.instagram.com/tach.band/"
-target="_blank">
-📸 Instagram
-</a>
-
-<a
-class="social-btn"
-href="https://www.youtube.com/@Tach-Band"
-target="_blank">
-▶ YouTube
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<footer>
-
-© 2026 Tach! • tach.band@gmail.com
-
-</footer>
+  <footer>
+    © 2026 Tach! • <a href="mailto:tach.band@gmail.com">tach.band@gmail.com</a>
+  </footer>
 
 </body>
 </html>
