@@ -98,7 +98,7 @@
     }
 
     .container{
-      max-width:900px;
+      max-width:1000px;
       margin:0 auto 60px;
       padding:20px;
     }
@@ -122,6 +122,97 @@
       font-size:clamp(18px, 2.8vw, 22px);
     }
 
+    /* Slider */
+    .slider{
+      position:relative;
+      width:100%;
+      margin-top:20px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#050505;
+      box-shadow:0 10px 30px rgba(0,0,0,.3);
+    }
+
+    .slider-track{
+      position:relative;
+      width:100%;
+      aspect-ratio:16 / 9;
+      touch-action:pan-y;
+      background:#000;
+    }
+
+    .slide{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition:opacity 0.7s ease, transform 0.4s ease;
+      cursor:pointer;
+    }
+
+    .slide.active{
+      opacity:1;
+      z-index:1;
+    }
+
+    .slide:hover{
+      transform:scale(1.02);
+    }
+
+    .slider-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:2;
+      background:rgba(0,0,0,0.65);
+      color:white;
+      border:none;
+      border-radius:10px;
+      padding:12px 16px;
+      font-size:24px;
+      cursor:pointer;
+      transition:0.2s ease;
+    }
+
+    .slider-btn:hover{
+      background:var(--accent);
+    }
+
+    .slider-btn.prev{
+      left:14px;
+    }
+
+    .slider-btn.next{
+      right:14px;
+    }
+
+    .slider-dots{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      padding:16px;
+      background:#101014;
+      border-top:1px solid var(--line);
+    }
+
+    .dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:#5d5d66;
+      cursor:pointer;
+      transition:0.2s ease;
+    }
+
+    .dot.active{
+      background:var(--accent);
+      transform:scale(1.15);
+    }
+
+    /* Newsletter */
     .newsletter-form{
       display:flex;
       gap:10px;
@@ -156,6 +247,60 @@
       font-size:14px;
     }
 
+    /* Lightbox */
+    .lightbox{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.92);
+      z-index:9999;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+
+    .lightbox.active{
+      display:flex;
+    }
+
+    .lightbox-inner{
+      position:relative;
+      max-width:95vw;
+      max-height:90vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .lightbox img{
+      max-width:95vw;
+      max-height:80vh;
+      border-radius:12px;
+      border:2px solid #222;
+      box-shadow:0 10px 40px rgba(0,0,0,.5);
+    }
+
+    .lightbox-close{
+      position:absolute;
+      top:-50px;
+      right:0;
+      background:rgba(0,0,0,0.75);
+      color:#fff;
+      border:none;
+      border-radius:10px;
+      padding:10px 14px;
+      font-size:28px;
+      cursor:pointer;
+    }
+
+    .lightbox-caption{
+      margin-top:14px;
+      color:#ddd;
+      font-size:15px;
+      text-align:center;
+    }
+
     footer{
       text-align:center;
       padding:30px 20px;
@@ -185,6 +330,16 @@
 
       .card{
         padding:24px 20px;
+      }
+
+      .slider-btn{
+        padding:10px 14px;
+        font-size:20px;
+      }
+
+      .lightbox-close{
+        top:10px;
+        right:10px;
       }
     }
   </style>
@@ -220,6 +375,36 @@
     </div>
 
     <div class="card">
+      <h2>Bandfotos</h2>
+      <p>
+        Eindrücke von Band, Bühne und allem dazwischen.
+      </p>
+
+      <div class="slider" id="bandSlider">
+        <div class="slider-track" id="sliderTrack">
+          <img src="foto1.jpg" alt="Bandfoto 1" class="slide active">
+          <img src="foto2.jpg" alt="Bandfoto 2" class="slide">
+          <img src="foto3.jpg" alt="Bandfoto 3" class="slide">
+          <img src="foto4.jpg" alt="Bandfoto 4" class="slide">
+          <img src="foto5.jpg" alt="Bandfoto 5" class="slide">
+          <img src="foto6.jpg" alt="Bandfoto 6" class="slide">
+        </div>
+
+        <button class="slider-btn prev" id="prevBtn">&#10094;</button>
+        <button class="slider-btn next" id="nextBtn">&#10095;</button>
+
+        <div class="slider-dots" id="sliderDots">
+          <span class="dot active" data-slide="0"></span>
+          <span class="dot" data-slide="1"></span>
+          <span class="dot" data-slide="2"></span>
+          <span class="dot" data-slide="3"></span>
+          <span class="dot" data-slide="4"></span>
+          <span class="dot" data-slide="5"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
       <h2>📬 Newsletter</h2>
       <p>
         Bleib auf dem Laufenden über neue Songs, Videos und Konzerttermine.
@@ -246,9 +431,148 @@
 
   </div>
 
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightboxClose">&times;</button>
+      <img id="lightboxImg" src="" alt="">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
   <footer>
     © 2026 Tach! • tach.band@gmail.com
   </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const sliderTrack = document.getElementById('sliderTrack');
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    let currentSlide = 0;
+    let autoSlide;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function showSlide(index){
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+
+      currentSlide = index;
+    }
+
+    function nextSlide(){
+      let next = currentSlide + 1;
+      if(next >= slides.length) next = 0;
+      showSlide(next);
+    }
+
+    function prevSlide(){
+      let prev = currentSlide - 1;
+      if(prev < 0) prev = slides.length - 1;
+      showSlide(prev);
+    }
+
+    function startAutoSlide(){
+      autoSlide = setInterval(nextSlide, 4000);
+    }
+
+    function resetAutoSlide(){
+      clearInterval(autoSlide);
+      startAutoSlide();
+    }
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      resetAutoSlide();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      resetAutoSlide();
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = Number(dot.getAttribute('data-slide'));
+        showSlide(index);
+        resetAutoSlide();
+      });
+    });
+
+    slides.forEach((slide, index) => {
+      slide.addEventListener('click', () => {
+        lightboxImg.src = slide.src;
+        lightboxImg.alt = slide.alt;
+        lightboxCaption.textContent = slide.alt;
+        lightbox.classList.add('active');
+        showSlide(index);
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if(e.target === lightbox){
+        lightbox.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if(lightbox.classList.contains('active') && e.key === 'Escape'){
+        lightbox.classList.remove('active');
+      }
+
+      if(e.key === 'ArrowRight'){
+        nextSlide();
+        resetAutoSlide();
+      }
+
+      if(e.key === 'ArrowLeft'){
+        prevSlide();
+        resetAutoSlide();
+      }
+    });
+
+    sliderTrack.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    sliderTrack.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe(){
+      const diff = touchEndX - touchStartX;
+
+      if(Math.abs(diff) < 50) return;
+
+      if(diff > 0){
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+
+      resetAutoSlide();
+    }
+
+    showSlide(0);
+    startAutoSlide();
+  </script>
 
 </body>
 </html>
