@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
   <title>Tach! – Deutschrock</title>
 
   <style>
@@ -52,10 +53,7 @@
       transition:0.2s ease;
     }
 
-    nav a.active{
-      background:var(--accent);
-    }
-
+    nav a.active,
     nav a:hover{
       background:var(--accent);
     }
@@ -68,19 +66,24 @@
       align-items:center;
       text-align:center;
       padding:80px 20px 60px;
-      background:#0b0b0f;
+      background:
+        linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.82)),
+        url("header.jpg") center center / contain no-repeat,
+        #050505;
     }
 
     .hero h1{
       font-size:clamp(48px, 10vw, 84px);
       letter-spacing:3px;
       margin-bottom:10px;
+      text-shadow:0 4px 18px rgba(0,0,0,0.5);
     }
 
     .hero p{
-      color:var(--muted);
+      color:#d0d0d8;
       margin-top:8px;
       font-size:clamp(18px, 3vw, 24px);
+      text-shadow:0 2px 12px rgba(0,0,0,0.5);
     }
 
     .hero button{
@@ -174,6 +177,10 @@
       .hero{
         min-height:60vh;
         padding:60px 20px 40px;
+        background:
+          linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.88)),
+          url("header.jpg") center center / contain no-repeat,
+          #050505;
       }
 
       .card{
