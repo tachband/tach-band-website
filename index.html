@@ -1,249 +1,251 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tach! – Start</title>
-  <style>
-    :root{
-      --bg:#0b0b0d;
-      --panel:#141417;
-      --panel2:#1b1b20;
-      --text:#f2f2f2;
-      --muted:#b7b7bd;
-      --accent:#d1122a;
-      --line:#2a2a31;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    *{
-      box-sizing:border-box;
-    }
+<title>Tach! – Deutschrock</title>
 
-    body{
-      margin:0;
-      font-family:Arial, Helvetica, sans-serif;
-      background:linear-gradient(180deg,#09090b 0%, #111116 100%);
-      color:var(--text);
-    }
+<style>
 
-    nav{
-      position:relative;
-      z-index:1000;
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:10px;
-      background:rgba(10,10,12,.96);
-      border-bottom:1px solid var(--line);
-      padding:16px 12px;
-    }
+:root{
+--bg:#0b0b0f;
+--card:#14141a;
+--accent:#e21d2d;
+--text:#ffffff;
+--muted:#9a9aa3;
+--line:#2a2a33;
+}
 
-    nav a{
-      color:#fff;
-      text-decoration:none;
-      font-weight:bold;
-      padding:10px 14px;
-      border-radius:8px;
-      transition:0.2s ease;
-    }
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,Helvetica,sans-serif;
+}
 
-    nav a:hover,
-    nav a.active{
-      background:var(--accent);
-    }
+body{
+background:var(--bg);
+color:var(--text);
+}
 
-    .hero{
-      min-height:78vh;
-      background:
-        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.82)),
-        url("header.jpg") center center/cover no-repeat;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:90px 20px 70px;
-      border-bottom:3px solid var(--accent);
-    }
+/* Navigation */
 
-    .hero-inner{
-      max-width:900px;
-    }
+header{
+position:fixed;
+top:0;
+width:100%;
+background:#000;
+border-bottom:1px solid var(--line);
+z-index:10;
+}
 
-    .logo{
-      width:100%;
-      max-width:240px;
-      height:auto;
-      margin-bottom:24px;
-      filter:drop-shadow(0 10px 30px rgba(0,0,0,.45));
-    }
+nav{
+max-width:1100px;
+margin:auto;
+display:flex;
+justify-content:center;
+gap:30px;
+padding:18px;
+flex-wrap:wrap;
+}
 
-    h1{
-      margin:0 0 10px;
-      font-size:clamp(42px, 8vw, 88px);
-      letter-spacing:2px;
-      text-transform:uppercase;
-    }
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
 
-    .sub{
-      color:var(--muted);
-      font-size:20px;
-      margin-bottom:30px;
-    }
+nav a.active{
+background:var(--accent);
+padding:6px 14px;
+border-radius:8px;
+}
 
-    .buttons{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
+/* Hero */
 
-    .btn{
-      display:inline-block;
-      padding:14px 24px;
-      border-radius:8px;
-      text-decoration:none;
-      font-weight:bold;
-      color:#fff;
-      background:var(--accent);
-      border:1px solid #ffffff14;
-      transition:0.2s ease;
-    }
+.hero{
+height:80vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:#111;
+margin-top:70px;
+}
 
-    .btn:hover{
-      opacity:0.9;
-    }
+.hero h1{
+font-size:60px;
+letter-spacing:3px;
+}
 
-    .btn.secondary{
-      background:transparent;
-      border:1px solid #ffffff2a;
-    }
+.hero p{
+color:var(--muted);
+margin-top:10px;
+}
 
-    .btn.secondary:hover{
-      background:#1a1a1f;
-    }
+.hero button{
+margin-top:25px;
+padding:12px 20px;
+background:var(--accent);
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
 
-    .section{
-      max-width:1100px;
-      margin:40px auto;
-      padding:0 20px;
-    }
+/* Layout */
 
-    .card{
-      background:linear-gradient(180deg,var(--panel),var(--panel2));
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:32px 24px;
-      box-shadow:0 10px 30px rgba(0,0,0,.25);
-    }
+.container{
+max-width:900px;
+margin:60px auto;
+padding:20px;
+}
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
-      gap:18px;
-      margin-top:20px;
-    }
+.card{
+background:var(--card);
+padding:30px;
+border-radius:14px;
+border:1px solid var(--line);
+margin-bottom:40px;
+}
 
-    .mini{
-      background:#111116;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:20px;
-    }
+.card h2{
+margin-bottom:10px;
+}
 
-    h2,h3{
-      margin-top:0;
-    }
+/* Newsletter */
 
-    p{
-      line-height:1.6;
-      color:var(--muted);
-    }
+.newsletter-form{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:20px;
+}
 
-    footer{
-      margin-top:50px;
-      text-align:center;
-      padding:30px 20px;
-      background:#0a0a0c;
-      border-top:1px solid var(--line);
-      color:#999;
-    }
+.newsletter-form input{
+flex:1;
+padding:14px;
+border-radius:10px;
+border:1px solid var(--line);
+background:#111;
+color:white;
+}
 
-    footer a{
-      color:#fff;
-      text-decoration:none;
-    }
+.newsletter-form button{
+padding:14px 22px;
+border:none;
+border-radius:10px;
+background:var(--accent);
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
 
-    @media (max-width: 700px){
-      .hero{
-        padding:70px 16px 50px;
-      }
+.newsletter-note{
+margin-top:10px;
+color:var(--muted);
+font-size:14px;
+}
 
-      .logo{
-        max-width:180px;
-      }
+/* Footer */
 
-      .sub{
-        font-size:18px;
-      }
-    }
-  </style>
+footer{
+text-align:center;
+padding:30px;
+border-top:1px solid var(--line);
+color:var(--muted);
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <nav>
-    <a href="index.html">Start</a>
-    <a href="band.html">Band</a>
-    <a href="musik.html">Musik</a>
-    <a href="tour.html" class="active">Tour</a>
-    <a href="merch.html">Merch</a>
-    <a href="social.html">Social</a>
-    <a href="impressum.html">Impressum</a>
-  </nav>
+<header>
 
-  <section class="hero">
-    <div class="hero-inner">
-      <img src="logo.png" alt="Tach Logo" class="logo">
-      <h1>Tach!</h1>
-      <div class="sub">Deutschrock • Laut • Direkt</div>
-      <div class="buttons">
-        <a class="btn" href="musik.html">Musik hören</a>
-        <a class="btn secondary" href="tour.html">Zur Tour</a>
-      </div>
-    </div>
-  </section>
+<nav>
+<a class="active" href="index.html">Start</a>
+<a href="band.html">Band</a>
+<a href="musik.html">Musik</a>
+<a href="tour.html">Tour</a>
+<a href="merch.html">Merch</a>
+<a href="social.html">Social</a>
+<a href="impressum.html">Impressum</a>
+</nav>
 
-  <section class="section">
-    <div class="card">
-      <h2>Willkommen bei Tach!</h2>
-      <p>
-        Hier findest du Musik, Live-Termine, Merch, Social Links und Kontakt.
-        Direkt, dunkel und klar – passend zum Sound.
-      </p>
+</header>
 
-      <div class="grid">
-        <div class="mini">
-          <h3>🎧 Musik</h3>
-          <p>Singles, Videos und Streaming-Links.</p>
-        </div>
-        <div class="mini">
-          <h3>📅 Tour</h3>
-          <p>Shows, Städte und kommende Gigs.</p>
-        </div>
-        <div class="mini">
-          <h3>👕 Merch</h3>
-          <p>Shirts, Poster und mehr.</p>
-        </div>
-        <div class="mini">
-          <h3>📲 Social</h3>
-          <p>Instagram, Spotify, YouTube und weitere Links.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="hero">
 
-  <footer>
-    © 2026 Tach! • <a href="mailto:tach.band@gmail.com">tach.band@gmail.com</a>
-  </footer>
+<h1>TACH!</h1>
+
+<p>Deutschrock • Laut • Direkt</p>
+
+<button onclick="location.href='musik.html'">
+Musik hören
+</button>
+
+</section>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Willkommen</h2>
+
+<p>
+Tach! steht für ehrlichen Deutschrock – laut, direkt und ohne Schnörkel.
+Songs über Alltag, Freundschaft und lange Nächte.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📬 Newsletter</h2>
+
+<p>
+Bleib auf dem Laufenden über neue Songs, Videos und Konzerttermine.
+</p>
+
+<form
+action="https://formspree.io/f/mvzwgdro"
+method="POST"
+class="newsletter-form"
+>
+
+<input
+type="email"
+name="email"
+placeholder="Deine E-Mail-Adresse"
+required
+>
+
+<button type="submit">
+Abonnieren
+</button>
+
+</form>
+
+<p class="newsletter-note">
+Kein Spam – nur Updates von Tach!
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 Tach! • tach.band@gmail.com
+
+</footer>
 
 </body>
+
 </html>
