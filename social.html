@@ -13,166 +13,59 @@
       --card:#14141a;
       --card2:#1a1a22;
       --accent:#e21d2d;
-      --accent-dark:#b91522;
       --text:#ffffff;
       --muted:#a4a4ad;
       --line:#2a2a33;
     }
-
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      font-family:Arial, Helvetica, sans-serif;
-    }
-
-    body{
-      background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);
-      color:var(--text);
-    }
-
-    header{
-      width:100%;
-      background:rgba(0,0,0,0.96);
-      border-bottom:1px solid var(--line);
-      position:sticky;
-      top:0;
-      z-index:1000;
-      backdrop-filter:blur(8px);
-    }
-
-    nav{
-      max-width:1200px;
-      margin:auto;
-      display:flex;
-      justify-content:center;
-      gap:16px;
-      padding:16px 14px;
-      flex-wrap:wrap;
-    }
-
-    nav a{
-      color:white;
-      text-decoration:none;
-      font-weight:bold;
-      padding:8px 12px;
-      border-radius:8px;
-      transition:0.2s ease;
-    }
-
-    nav a.active,
-    nav a:hover{
-      background:var(--accent);
-    }
-
-    .hero{
-      padding:60px 20px 40px;
-      text-align:center;
-      background:
-        linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.86)),
-        #050505;
-      border-bottom:1px solid #121216;
-    }
-
-    .hero h1{
-      font-size:clamp(46px, 8vw, 86px);
-      letter-spacing:3px;
-      margin-bottom:10px;
-      text-transform:uppercase;
-    }
-
-    .hero p{
-      color:#d8d8df;
-      font-size:clamp(18px, 2.8vw, 24px);
-      max-width:800px;
-      margin:0 auto;
-      line-height:1.5;
-    }
-
-    .section{
-      max-width:1000px;
-      margin:0 auto;
-      padding:30px 20px;
-    }
-
-    .card{
-      background:linear-gradient(180deg,var(--card),var(--card2));
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:28px 24px;
-      box-shadow:0 12px 30px rgba(0,0,0,.22);
-      margin-bottom:24px;
-    }
-
-    .card h2{
-      font-size:clamp(30px, 5vw, 44px);
-      margin-bottom:12px;
-      text-align:center;
-    }
-
-    .card p{
-      color:var(--muted);
-      line-height:1.6;
-      font-size:18px;
-      text-align:center;
-    }
-
-    .social-links{
-      margin-top:24px;
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-      max-width:540px;
-      margin-left:auto;
-      margin-right:auto;
-    }
-
-    .social-btn{
-      display:block;
-      padding:18px 20px;
-      border-radius:14px;
-      background:#101015;
-      border:1px solid var(--line);
-      color:white;
-      text-decoration:none;
-      font-size:22px;
-      font-weight:bold;
-      text-align:center;
-      transition:0.2s ease;
-    }
-
-    .social-btn:hover{
-      background:var(--accent);
-      transform:translateY(-2px);
-    }
-
-    footer{
-      text-align:center;
-      padding:30px 20px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      background:#0a0a0c;
-      margin-top:30px;
-    }
-
-    footer a{
-      color:#fff;
-      text-decoration:none;
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;}
+    body{background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);color:var(--text);}
+    header{width:100%;background:rgba(0,0,0,0.96);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:1000;backdrop-filter:blur(8px);}
+    .nav-wrap{max-width:1200px;margin:auto;padding:14px 16px;}
+    .nav-top{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .brand{color:#fff;text-decoration:none;font-weight:bold;font-size:20px;letter-spacing:1px;}
+    .menu-toggle{display:none;background:transparent;border:1px solid var(--line);color:#fff;border-radius:10px;padding:10px 14px;font-size:24px;cursor:pointer;}
+    nav{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:10px;}
+    nav a{color:white;text-decoration:none;font-weight:bold;padding:8px 12px;border-radius:8px;transition:0.2s ease;}
+    nav a.active, nav a:hover{background:var(--accent);}
+    .hero{padding:60px 20px 40px;text-align:center;background:linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.86)), #050505;border-bottom:1px solid #121216;}
+    .hero h1{font-size:clamp(46px, 8vw, 86px);letter-spacing:3px;margin-bottom:10px;text-transform:uppercase;}
+    .hero p{color:#d8d8df;font-size:clamp(18px, 2.8vw, 24px);max-width:800px;margin:0 auto;line-height:1.5;}
+    .section{max-width:1000px;margin:0 auto;padding:30px 20px;}
+    .card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:16px;padding:28px 24px;box-shadow:0 12px 30px rgba(0,0,0,.22);margin-bottom:24px;}
+    .card h2{font-size:clamp(30px, 5vw, 44px);margin-bottom:12px;text-align:center;}
+    .card p{color:var(--muted);line-height:1.6;font-size:18px;text-align:center;}
+    .social-links{margin-top:24px;display:flex;flex-direction:column;gap:18px;max-width:540px;margin-left:auto;margin-right:auto;}
+    .social-btn{display:block;padding:18px 20px;border-radius:14px;background:#101015;border:1px solid var(--line);color:white;text-decoration:none;font-size:22px;font-weight:bold;text-align:center;transition:0.2s ease;}
+    .social-btn:hover{background:var(--accent);transform:translateY(-2px);}
+    footer{text-align:center;padding:30px 20px;border-top:1px solid var(--line);color:var(--muted);background:#0a0a0c;margin-top:30px;}
+    footer a{color:#fff;text-decoration:none;}
+    @media (max-width:760px){
+      .menu-toggle{display:block;}
+      nav{display:none;flex-direction:column;align-items:stretch;gap:10px;margin-top:14px;}
+      nav.open{display:flex;}
+      nav a{display:block;width:100%;text-align:center;}
     }
   </style>
 </head>
 <body>
 
   <header>
-    <nav>
-      <a href="index.html">Start</a>
-      <a href="band.html">Band</a>
-      <a href="musik.html">Musik</a>
-      <a href="tour.html">Tour</a>
-      <a href="merch.html">Merch</a>
-      <a href="social.html" class="active">Social</a>
-      <a href="impressum.html">Impressum</a>
-    </nav>
+    <div class="nav-wrap">
+      <div class="nav-top">
+        <a href="index.html" class="brand">TACH!</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen">☰</button>
+      </div>
+
+      <nav id="mainNav">
+        <a href="index.html">Start</a>
+        <a href="band.html">Band</a>
+        <a href="musik.html">Musik</a>
+        <a href="tour.html">Tour</a>
+        <a href="merch.html">Merch</a>
+        <a href="social.html" class="active">Social</a>
+        <a href="impressum.html">Impressum</a>
+      </nav>
+    </div>
   </header>
 
   <section class="hero">
@@ -186,21 +79,8 @@
       <p>Hier findest du unsere aktuellen Social-Profile.</p>
 
       <div class="social-links">
-        <a
-          class="social-btn"
-          href="https://www.instagram.com/tach.band/"
-          target="_blank"
-          rel="noopener noreferrer">
-          📸 Instagram
-        </a>
-
-        <a
-          class="social-btn"
-          href="https://www.youtube.com/@Tach-Band"
-          target="_blank"
-          rel="noopener noreferrer">
-          ▶ YouTube
-        </a>
+        <a class="social-btn" href="https://www.instagram.com/tach.band/" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
+        <a class="social-btn" href="https://www.youtube.com/@Tach-Band" target="_blank" rel="noopener noreferrer">▶ YouTube</a>
       </div>
     </div>
   </section>
@@ -208,6 +88,15 @@
   <footer>
     © 2026 Tach! • <a href="mailto:tach.band@gmail.com">tach.band@gmail.com</a>
   </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    menuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('open');
+      menuToggle.textContent = mainNav.classList.contains('open') ? '✕' : '☰';
+    });
+  </script>
 
 </body>
 </html>
