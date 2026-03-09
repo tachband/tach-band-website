@@ -1,163 +1,83 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tach! – Band</title>
-
-<style>
-
-:root{
---bg:#09090b;
---bg2:#111116;
---card:#14141a;
---accent:#e21d2d;
---text:#ffffff;
---muted:#a4a4ad;
---line:#2a2a33;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
-body{
-background:linear-gradient(180deg,var(--bg),var(--bg2));
-color:var(--text);
-}
-
-header{
-background:black;
-border-bottom:1px solid var(--line);
-position:sticky;
-top:0;
-}
-
-nav{
-display:flex;
-justify-content:center;
-gap:16px;
-padding:16px;
-flex-wrap:wrap;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-padding:8px 12px;
-border-radius:6px;
-}
-
-nav a:hover,
-nav a.active{
-background:var(--accent);
-}
-
-.hero{
-text-align:center;
-padding:70px 20px;
-}
-
-.hero h1{
-font-size:70px;
-letter-spacing:3px;
-margin-bottom:10px;
-}
-
-.hero p{
-color:var(--muted);
-font-size:22px;
-}
-
-.section{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-}
-
-.card{
-background:var(--card);
-padding:30px;
-border-radius:14px;
-border:1px solid var(--line);
-}
-
-.card h2{
-font-size:34px;
-margin-bottom:20px;
-}
-
-.card p{
-color:var(--muted);
-line-height:1.6;
-font-size:18px;
-}
-
-footer{
-text-align:center;
-padding:30px;
-margin-top:40px;
-border-top:1px solid var(--line);
-color:var(--muted);
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tach! – Band</title>
+  <style>
+    :root{--bg:#09090b;--bg2:#111116;--card:#14141a;--card2:#1a1a22;--accent:#e21d2d;--text:#ffffff;--muted:#a4a4ad;--line:#2a2a33;}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
+    body{background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text);}
+    header{width:100%;background:rgba(0,0,0,0.96);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:1000;}
+    .nav-wrap{max-width:1200px;margin:auto;padding:14px 16px;}
+    .nav-top{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .brand{color:#fff;text-decoration:none;font-weight:bold;font-size:20px;letter-spacing:1px;}
+    .menu-toggle{display:none;background:transparent;border:1px solid var(--line);color:#fff;border-radius:10px;padding:10px 14px;font-size:24px;cursor:pointer;}
+    nav{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:10px;}
+    nav a{color:white;text-decoration:none;font-weight:bold;padding:8px 12px;border-radius:8px;}
+    nav a.active,nav a:hover{background:var(--accent);}
+    .hero{text-align:center;padding:70px 20px;}
+    .hero h1{font-size:70px;letter-spacing:3px;margin-bottom:10px;}
+    .hero p{color:var(--muted);font-size:22px;}
+    .section{max-width:900px;margin:auto;padding:40px 20px;}
+    .card{background:linear-gradient(180deg,var(--card),var(--card2));padding:30px;border-radius:14px;border:1px solid var(--line);}
+    .card h2{font-size:34px;margin-bottom:20px;}
+    .card p{color:var(--muted);line-height:1.6;font-size:18px;}
+    footer{text-align:center;padding:30px;margin-top:40px;border-top:1px solid var(--line);color:var(--muted);background:#0a0a0c;}
+    @media (max-width:760px){
+      .menu-toggle{display:block;}
+      nav{display:none;flex-direction:column;align-items:stretch;gap:10px;margin-top:14px;}
+      nav.open{display:flex;}
+      nav a{display:block;text-align:center;width:100%;}
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
-<nav>
-<a href="index.html">Start</a>
-<a href="band.html" class="active">Band</a>
-<a href="musik.html">Musik</a>
-<a href="tour.html">Tour</a>
-<a href="merch.html">Merch</a>
-<a href="social.html">Social</a>
-<a href="impressum.html">Impressum</a>
-</nav>
+  <div class="nav-wrap">
+    <div class="nav-top">
+      <a href="index.html" class="brand">TACH!</a>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+    <nav id="mainNav">
+      <a href="index.html">Start</a>
+      <a href="band.html" class="active">Band</a>
+      <a href="musik.html">Musik</a>
+      <a href="tour.html">Tour</a>
+      <a href="merch.html">Merch</a>
+      <a href="social.html">Social</a>
+      <a href="impressum.html">Impressum</a>
+    </nav>
+  </div>
 </header>
 
 <section class="hero">
-<h1>Die Band</h1>
-<p>Deutschrock mit Druck.</p>
+  <h1>Die Band</h1>
+  <p>Deutschrock mit Druck.</p>
 </section>
 
 <section class="section">
-<div class="card">
-
-<h2>Über Tach!</h2>
-
-<p>
-Tach! steht für ehrlichen Deutschrock ohne Schnörkel.
-Direkt, laut und mit Haltung.
-</p>
-
-<br>
-
-<p>
-Die Songs entstehen irgendwo zwischen Proberaum,
-Bühne, Alltag und langen Nächten.
-Mal laut, mal nachdenklich – aber immer echt.
-</p>
-
-<br>
-
-<p>
-Wenn Tach! spielt, geht es nicht um Perfektion,
-sondern um Energie, Publikum und gemeinsame Momente.
-</p>
-
-</div>
+  <div class="card">
+    <h2>Über Tach!</h2>
+    <p>Tach! steht für ehrlichen Deutschrock ohne Schnörkel. Direkt, laut und mit Haltung.</p>
+    <br><br>
+    <p>Die Songs entstehen irgendwo zwischen Proberaum, Bühne, Alltag und langen Nächten. Mal laut, mal nachdenklich – aber immer echt.</p>
+    <br><br>
+    <p>Wenn Tach! spielt, geht es nicht um Perfektion, sondern um Energie, Publikum und gemeinsame Momente.</p>
+  </div>
 </section>
 
-<footer>
-© 2026 Tach!
-</footer>
+<footer>© 2026 Tach!</footer>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+  menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('open');
+    menuToggle.textContent = mainNav.classList.contains('open') ? '✕' : '☰';
+  });
+</script>
 
 </body>
 </html>
