@@ -45,14 +45,44 @@
       backdrop-filter:blur(8px);
     }
 
-    nav{
+    .nav-wrap{
       max-width:1200px;
       margin:auto;
+      padding:14px 16px;
+    }
+
+    .nav-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:20px;
+      letter-spacing:1px;
+    }
+
+    .menu-toggle{
+      display:none;
+      background:transparent;
+      border:1px solid var(--line);
+      color:#fff;
+      border-radius:10px;
+      padding:10px 14px;
+      font-size:24px;
+      cursor:pointer;
+    }
+
+    nav{
       display:flex;
       justify-content:center;
       gap:16px;
-      padding:16px 14px;
       flex-wrap:wrap;
+      margin-top:10px;
     }
 
     nav a{
@@ -183,7 +213,6 @@
 
     .span-7{ grid-column:span 7; }
     .span-5{ grid-column:span 5; }
-    .span-12{ grid-column:span 12; }
 
     .news-box h3,
     .tour-box h3{
@@ -291,7 +320,6 @@
       line-height:1.6;
     }
 
-    /* Slider */
     .slider{
       position:relative;
       width:100%;
@@ -376,7 +404,6 @@
       transform:scale(1.15);
     }
 
-    /* Newsletter */
     .newsletter-form{
       display:flex;
       gap:10px;
@@ -411,7 +438,6 @@
       font-size:14px;
     }
 
-    /* Lightbox */
     .lightbox{
       display:none;
       position:fixed;
@@ -486,15 +512,27 @@
       }
     }
 
-    @media (max-width:700px){
+    @media (max-width:760px){
+      .menu-toggle{
+        display:block;
+      }
+
       nav{
-        gap:12px;
-        padding:16px 10px;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:10px;
+        margin-top:14px;
+      }
+
+      nav.open{
+        display:flex;
       }
 
       nav a{
-        padding:8px 10px;
-        font-size:15px;
+        display:block;
+        text-align:center;
+        width:100%;
       }
 
       .hero{
@@ -531,15 +569,22 @@
 <body>
 
   <header>
-    <nav>
-      <a class="active" href="index.html">Start</a>
-      <a href="band.html">Band</a>
-      <a href="musik.html">Musik</a>
-      <a href="tour.html">Tour</a>
-      <a href="merch.html">Merch</a>
-      <a href="social.html">Social</a>
-      <a href="impressum.html">Impressum</a>
-    </nav>
+    <div class="nav-wrap">
+      <div class="nav-top">
+        <a href="index.html" class="brand">TACH!</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen">☰</button>
+      </div>
+
+      <nav id="mainNav">
+        <a class="active" href="index.html">Start</a>
+        <a href="band.html">Band</a>
+        <a href="musik.html">Musik</a>
+        <a href="tour.html">Tour</a>
+        <a href="merch.html">Merch</a>
+        <a href="social.html">Social</a>
+        <a href="impressum.html">Impressum</a>
+      </nav>
+    </div>
   </header>
 
   <section class="hero">
@@ -696,6 +741,14 @@
   </footer>
 
   <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+
+    menuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('open');
+      menuToggle.textContent = mainNav.classList.contains('open') ? '✕' : '☰';
+    });
+
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
     const prevBtn = document.getElementById('prevBtn');
@@ -713,14 +766,8 @@
     let touchEndX = 0;
 
     function showSlide(index){
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
-
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
       currentSlide = index;
     }
 
@@ -805,22 +852,11 @@
 
     sliderTrack.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe(){
       const diff = touchEndX - touchStartX;
-
       if(Math.abs(diff) < 50) return;
-
-      if(diff > 0){
-        prevSlide();
-      } else {
-        nextSlide();
-      }
-
+      if(diff > 0){ prevSlide(); } else { nextSlide(); }
       resetAutoSlide();
-    }
+    }, { passive: true });
 
     showSlide(0);
     startAutoSlide();
