@@ -8,11 +8,14 @@
 
   <style>
     :root{
-      --bg:#0b0b0f;
+      --bg:#09090b;
+      --bg2:#111116;
       --card:#14141a;
+      --card2:#1a1a22;
       --accent:#e21d2d;
+      --accent-dark:#b91522;
       --text:#ffffff;
-      --muted:#9a9aa3;
+      --muted:#a4a4ad;
       --line:#2a2a33;
     }
 
@@ -23,24 +26,32 @@
       font-family:Arial, Helvetica, sans-serif;
     }
 
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
-      background:var(--bg);
+      background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);
       color:var(--text);
     }
 
     header{
       width:100%;
-      background:#000;
+      background:rgba(0,0,0,0.96);
       border-bottom:1px solid var(--line);
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(8px);
     }
 
     nav{
-      max-width:1100px;
+      max-width:1200px;
       margin:auto;
       display:flex;
       justify-content:center;
-      gap:18px;
-      padding:18px 14px;
+      gap:16px;
+      padding:16px 14px;
       flex-wrap:wrap;
     }
 
@@ -59,90 +70,233 @@
     }
 
     .hero{
-      min-height:72vh;
+      min-height:78vh;
       display:flex;
       flex-direction:column;
       justify-content:center;
       align-items:center;
       text-align:center;
-      padding:40px 20px 80px;
-      background:#050505;
-      border-bottom:1px solid #111;
+      padding:50px 20px 70px;
+      background:
+        linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.86)),
+        radial-gradient(circle at center, rgba(226,29,45,0.12), transparent 55%),
+        #050505;
+      border-bottom:1px solid #121216;
     }
 
-   .hero-logo{
-  width:700px;
-  max-width:95%;
-  margin-bottom:40px;
-  opacity:0.95;
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
-}
+    .hero-logo{
+      width:720px;
+      max-width:95%;
+      display:block;
+      margin:0 auto 26px;
+      filter:drop-shadow(0 8px 30px rgba(0,0,0,0.55));
     }
 
     .hero h1{
-      font-size:clamp(48px, 10vw, 84px);
-      letter-spacing:3px;
+      font-size:clamp(52px, 9vw, 96px);
+      letter-spacing:4px;
       margin-bottom:10px;
+      text-transform:uppercase;
       text-shadow:0 4px 18px rgba(0,0,0,0.55);
     }
 
     .hero p{
-      color:#d0d0d8;
-      margin-top:8px;
-      font-size:clamp(18px, 3vw, 24px);
-      text-shadow:0 2px 12px rgba(0,0,0,0.5);
+      color:#d8d8df;
+      font-size:clamp(18px, 2.8vw, 26px);
+      margin-bottom:30px;
+      max-width:800px;
+      line-height:1.5;
     }
 
-    .hero button{
-      margin-top:28px;
-      padding:14px 26px;
-      background:var(--accent);
-      border:none;
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 24px;
       border-radius:10px;
-      color:white;
-      font-size:18px;
-      cursor:pointer;
+      text-decoration:none;
+      font-weight:bold;
       transition:0.2s ease;
+      border:1px solid transparent;
     }
 
-    .hero button:hover{
-      opacity:0.92;
+    .btn-primary{
+      background:var(--accent);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:var(--accent-dark);
       transform:translateY(-1px);
     }
 
-    .container{
-      max-width:1000px;
-      margin:0 auto 60px;
-      padding:20px;
+    .btn-secondary{
+      background:transparent;
+      color:#fff;
+      border-color:var(--line);
+    }
+
+    .btn-secondary:hover{
+      background:#1b1b22;
+      transform:translateY(-1px);
+    }
+
+    .section{
+      max-width:1100px;
+      margin:0 auto;
+      padding:30px 20px;
+    }
+
+    .section-head{
+      margin-bottom:18px;
+    }
+
+    .section-head h2{
+      font-size:clamp(34px, 5vw, 48px);
+      margin-bottom:8px;
+    }
+
+    .section-head p{
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.6;
     }
 
     .card{
-      background:var(--card);
-      padding:30px;
-      border-radius:14px;
+      background:linear-gradient(180deg,var(--card),var(--card2));
       border:1px solid var(--line);
-      margin-bottom:30px;
+      border-radius:16px;
+      padding:28px 24px;
+      box-shadow:0 12px 30px rgba(0,0,0,.22);
     }
 
-    .card h2{
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      gap:20px;
+    }
+
+    .span-7{ grid-column:span 7; }
+    .span-5{ grid-column:span 5; }
+    .span-12{ grid-column:span 12; }
+
+    .news-box h3,
+    .tour-box h3{
+      font-size:28px;
       margin-bottom:12px;
-      font-size:clamp(28px, 5vw, 42px);
     }
 
-    .card p{
-      color:var(--text);
+    .news-list{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      margin-top:10px;
+    }
+
+    .news-item{
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#101015;
+    }
+
+    .news-item strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:18px;
+    }
+
+    .news-item span{
+      color:var(--muted);
       line-height:1.6;
-      font-size:clamp(18px, 2.8vw, 22px);
+      display:block;
+    }
+
+    .tour-list{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .tour-item{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:flex-start;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#101015;
+      flex-wrap:wrap;
+    }
+
+    .tour-item strong{
+      display:block;
+      font-size:18px;
+      margin-bottom:4px;
+    }
+
+    .tour-item span{
+      color:var(--muted);
+      display:block;
+      line-height:1.5;
+    }
+
+    .tour-tag{
+      background:var(--accent);
+      color:white;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:bold;
+      white-space:nowrap;
+    }
+
+    .quick-links{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+      gap:16px;
+    }
+
+    .quick-link{
+      display:block;
+      text-decoration:none;
+      color:white;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:22px;
+      background:#101015;
+      transition:0.2s ease;
+    }
+
+    .quick-link:hover{
+      transform:translateY(-2px);
+      border-color:#3a3a45;
+      background:#15151d;
+    }
+
+    .quick-link h3{
+      margin-bottom:8px;
+      font-size:24px;
+    }
+
+    .quick-link p{
+      color:var(--muted);
+      line-height:1.6;
     }
 
     /* Slider */
     .slider{
       position:relative;
       width:100%;
-      margin-top:20px;
-      border-radius:14px;
+      margin-top:18px;
+      border-radius:16px;
       overflow:hidden;
       border:1px solid var(--line);
       background:#050505;
@@ -196,13 +350,8 @@
       background:var(--accent);
     }
 
-    .slider-btn.prev{
-      left:14px;
-    }
-
-    .slider-btn.next{
-      right:14px;
-    }
+    .slider-btn.prev{ left:14px; }
+    .slider-btn.next{ right:14px; }
 
     .slider-dots{
       display:flex;
@@ -321,6 +470,20 @@
       padding:30px 20px;
       border-top:1px solid var(--line);
       color:var(--muted);
+      background:#0a0a0c;
+      margin-top:30px;
+    }
+
+    footer a{
+      color:#fff;
+      text-decoration:none;
+    }
+
+    @media (max-width:900px){
+      .span-7,
+      .span-5{
+        grid-column:span 12;
+      }
     }
 
     @media (max-width:700px){
@@ -335,18 +498,22 @@
       }
 
       .hero{
-        min-height:62vh;
-        padding:30px 20px 70px;
+        min-height:68vh;
+        padding:34px 20px 56px;
       }
 
       .hero-logo{
-        width:280px;
-        max-width:82%;
-        margin-bottom:24px;
+        width:320px;
+        max-width:90%;
+        margin-bottom:18px;
+      }
+
+      .section{
+        padding:24px 16px;
       }
 
       .card{
-        padding:24px 20px;
+        padding:22px 18px;
       }
 
       .slider-btn{
@@ -378,25 +545,67 @@
   <section class="hero">
     <img src="header.jpg" alt="Tach Header Logo" class="hero-logo">
     <h1>TACH!</h1>
-    <p>Deutschrock • Laut • Direkt</p>
-    <button onclick="location.href='musik.html'">Musik hören</button>
+    <p>Deutschrock mit Kante, Druck und ehrlichen Songs. Laut. Direkt. Ohne Schnörkel.</p>
+
+    <div class="hero-actions">
+      <a href="musik.html" class="btn btn-primary">Musik hören</a>
+      <a href="tour.html" class="btn btn-secondary">Tour ansehen</a>
+    </div>
   </section>
 
-  <div class="container">
+  <section class="section">
+    <div class="grid">
+      <div class="card news-box span-7">
+        <h3>Neuigkeiten</h3>
+        <div class="news-list">
+          <div class="news-item">
+            <strong>Neue Songs in Arbeit</strong>
+            <span>Wir arbeiten an neuem Material. Mehr dazu bald auf unseren Kanälen und hier auf der Seite.</span>
+          </div>
+          <div class="news-item">
+            <strong>Bandseite online</strong>
+            <span>Tach! ist jetzt mit eigener Website, Newsletter, Socials und Tourbereich am Start.</span>
+          </div>
+        </div>
+      </div>
 
-    <div class="card">
-      <h2>Willkommen</h2>
-      <p>
-        Tach! steht für ehrlichen Deutschrock – laut, direkt und ohne Schnörkel.
-        Songs über Alltag, Freundschaft und lange Nächte.
-      </p>
+      <div class="card tour-box span-5">
+        <h3>Nächste Shows</h3>
+        <div class="tour-list">
+          <div class="tour-item">
+            <div>
+              <strong>02.08.2026 – Köln</strong>
+              <span>MTC Club</span>
+            </div>
+            <div class="tour-tag">Live</div>
+          </div>
+
+          <div class="tour-item">
+            <div>
+              <strong>16.08.2026 – Dortmund</strong>
+              <span>FZW</span>
+            </div>
+            <div class="tour-tag">Live</div>
+          </div>
+
+          <div class="tour-item">
+            <div>
+              <strong>30.08.2026 – Hannover</strong>
+              <span>MusikZentrum</span>
+            </div>
+            <div class="tour-tag">Live</div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
+  <section class="section">
     <div class="card">
-      <h2>Bandfotos</h2>
-      <p>
-        Eindrücke von Band, Bühne und allem dazwischen.
-      </p>
+      <div class="section-head">
+        <h2>Bandfotos</h2>
+        <p>Eindrücke von Band, Bühne und allem dazwischen.</p>
+      </div>
 
       <div class="slider" id="bandSlider">
         <div class="slider-track" id="sliderTrack">
@@ -421,12 +630,38 @@
         </div>
       </div>
     </div>
+  </section>
 
+  <section class="section">
+    <div class="quick-links">
+      <a href="musik.html" class="quick-link">
+        <h3>🎧 Musik</h3>
+        <p>Videos, Songs und alles, was als Nächstes erscheint.</p>
+      </a>
+
+      <a href="tour.html" class="quick-link">
+        <h3>📅 Tour</h3>
+        <p>Termine, Poster und kommende Shows auf einen Blick.</p>
+      </a>
+
+      <a href="merch.html" class="quick-link">
+        <h3>👕 Merch</h3>
+        <p>Shirts, Poster, Sticker und künftige Artikel von Tach!.</p>
+      </a>
+
+      <a href="social.html" class="quick-link">
+        <h3>📱 Social</h3>
+        <p>Instagram und YouTube für neue Inhalte und Updates.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="card">
-      <h2>📬 Newsletter</h2>
-      <p>
-        Bleib auf dem Laufenden über neue Songs, Videos und Konzerttermine.
-      </p>
+      <div class="section-head">
+        <h2>📬 Newsletter</h2>
+        <p>Bleib auf dem Laufenden über neue Songs, Videos und Konzerttermine.</p>
+      </div>
 
       <form
         action="https://formspree.io/f/mvzwgdro"
@@ -446,8 +681,7 @@
         Kein Spam – nur Updates von Tach!
       </p>
     </div>
-
-  </div>
+  </section>
 
   <div class="lightbox" id="lightbox">
     <div class="lightbox-inner">
@@ -458,7 +692,7 @@
   </div>
 
   <footer>
-    © 2026 Tach! • tach.band@gmail.com
+    © 2026 Tach! • <a href="mailto:tach.band@gmail.com">tach.band@gmail.com</a>
   </footer>
 
   <script>
